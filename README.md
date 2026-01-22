@@ -1,5 +1,7 @@
 # Pet Shelter Application
 
+**DISCLAIMER: This project is proprietary educational content from Amazon Cloud Institute (ACI) and is part of a structured learning program. This code is for educational purposes only and should not be redistributed or used commercially.**
+
 A full-stack pet shelter application with a React frontend and AWS serverless backend.
 
 ## Project Structure
