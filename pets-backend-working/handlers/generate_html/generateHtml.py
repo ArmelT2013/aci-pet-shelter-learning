@@ -18,7 +18,7 @@ def write_report(html_str):
     s3 = boto3.client('s3')
 
     params = {
-        'Bucket': 'report-pets-interest-318551305789-20260106', #REPLACE BUCKET_NAME WITH S3 BUCKET NAME
+        'Bucket': os.environ['REPORT_BUCKET_NAME'],
         'Key': 'report.html',
         'Body': html_str.encode(),
         'CacheControl': 'max-age=0',

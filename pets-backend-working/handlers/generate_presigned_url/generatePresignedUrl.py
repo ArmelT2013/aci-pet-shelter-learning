@@ -1,3 +1,4 @@
+import os
 import logging
 import boto3
 from botocore.exceptions import ClientError
@@ -18,7 +19,7 @@ def generate_presigned_url(bucket_name, object_name, expiration_in_seconds):
         return None
 
 def lambda_handler(event, context):
-    bucket_name = "report-pets-interest-318551305789-20260106" #REPLACE BUCKET_NAME WITH THE NAME OF THE REPORT BUCKET HERE
+    bucket_name = os.environ['REPORT_BUCKET_NAME']
     object_name = "report.html"
     expiration_in_seconds = 2400
 
