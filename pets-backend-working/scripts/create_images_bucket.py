@@ -49,7 +49,7 @@ public_access_block_response = s3.put_public_access_block(
 
 # print(f"Block public access turned off for {bucket_name}.")
 # Add all product images to the newly created S3 bucket
-images_folder = os.path.expanduser('C:/Users/tchig/DEVELOPER INTERMEDIATE 2/week7/pet-shelter-client/src/assets')
+images_folder = os.path.join(os.path.dirname(__file__), '../../pet-shelter-client/src/assets')
 for filename in os.listdir(images_folder):
     file_path = os.path.join(images_folder, filename)
     if os.path.isfile(file_path):
