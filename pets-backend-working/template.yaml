@@ -8,6 +8,13 @@ Parameters:
   ReportBucketName:
     Type: String
     Description: Name of the existing S3 report bucket
+  SNSEmailEndpoint:
+    Type: String
+    Description: Email address for SNS report notifications
+  CognitoCallbackURL:
+    Type: String
+    Description: Cognito callback and logout URL (e.g. http://localhost:8081/preview or CloudFront URL)
+    Default: http://localhost:8081/preview
 
 Resources:
   #Dynamodb table to store Pet records
@@ -77,13 +84,15 @@ Resources:
         CodeUri: handlers/get_pets
         Handler: getPets.lambda_handler
         Runtime: python3.12
-        Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
         Architectures: # Specifies the architecture for the Lambda function.
           - x86_64
         Environment:  # Configures environment variables for Lambda functions.
           Variables: # Defines environment variable values for Lambda functions.
             # Environment variables for the DynamoDB table names
             PETS_TABLE: !Ref PetsTable
+        Policies:
+          - DynamoDBReadPolicy:
+              TableName: !Ref PetsTable
         Events: # Defines events that trigger the Lambda function.
           GetPetsApi: # Specifies an API Gateway event named GetPetsApi that triggers the Lambda function.
             Type: Api # Specifies that the event source is an API Gateway endpoint.
@@ -99,13 +108,15 @@ Resources:
       CodeUri: handlers/get_adoptions
       Handler: getAdoptions.lambda_handler
       Runtime: python3.12
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Architectures: 
         - x86_64
       Environment:  # Configures environment variables for Lambda functions.
         Variables: # Defines environment variable values for Lambda functions.
           # Environment variable for the DynamoDB table name
           ADOPTIONS_TABLE: !Ref AdoptionsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref AdoptionsTable
       Events:
         GetAdoptionsApi: 
           Type: Api 
@@ -126,12 +137,14 @@ Resources:
       CodeUri: handlers/get_adoption #handlers/get_adoptions_by_id.py
       Handler: getAdoption.lambda_handler
       Runtime: python3.12
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Architectures:
         - x86_64
       Environment:
         Variables:
           ADOPTIONS_TABLE: !Ref AdoptionsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref AdoptionsTable
       Events:
         GetAdoptionApi:
           Type: Api
@@ -150,12 +163,14 @@ Resources:
       CodeUri: handlers/create_adoption
       Handler: createAdoption.lambda_handler
       Runtime: python3.12
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Architectures:
         - x86_64
       Environment:
         Variables:
           ADOPTIONS_TABLE: !Ref AdoptionsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AdoptionsTable
       Events:
         CreateAdoptionApi:
           Type: Api
@@ -171,12 +186,14 @@ Resources:
       CodeUri: handlers/create_report
       Handler: createReport.lambda_handler
       Runtime: python3.12
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Architectures:
         - x86_64
       Environment:
         Variables:
           STATE_MACHINE_ARN: !Ref StateMachine
+      Policies:
+        - StepFunctionsExecutionPolicy:
+            StateMachineName: !GetAtt StateMachine.Name
       Events:
         CreateReportApi:
           Type: Api
@@ -253,9 +270,9 @@ Resources:
         - openid
         - aws.cognito.signin.user.admin
       CallbackURLs:
-        - http://localhost:8081/preview # REPLACE WITH PETS APP CLOUDFRONT PREVIEW DOMAIN URL
+        - !Ref CognitoCallbackURL
       LogoutURLs:
-        - http://localhost:8081/preview # REPLACE WITH PETS APP CLOUDFRONT PREVIEW DOMAIN URL
+        - !Ref CognitoCallbackURL
       SupportedIdentityProviders:
         - COGNITO
         
@@ -263,7 +280,7 @@ Resources:
   CognitoUserPoolDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: !Sub "pets-app-user-pool-${AWS::AccountId}-at"  # REPLACE with something unique, such as using your initials and the current date for the domain name; for example, abc-2024-04-28. You can add extra characters if needed.
+      Domain: !Sub "pets-app-user-pool-${AWS::AccountId}"
       UserPoolId: !Ref CognitoUserPool
   
   #NEW: Generate report data function
@@ -317,12 +334,13 @@ Resources:
       Runtime: python3.13
       Architectures:
         - x86_64
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Environment:
         Variables:
           REPORT_BUCKET_NAME: !Ref ReportBucketName
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref ReportBucketName
   
-  #----------------------------------------------------- EVERYTHING BELOW THIS LINE IS FOR AFTER WK6 STARTER CODE IS SET UP -> PART OF THE RISE LESSON FOR WEEK 6 ------------------------------------------------------------------------
   SNSTopic:
     Type: AWS::SNS::Topic
     Properties:
@@ -333,7 +351,7 @@ Resources:
     Properties:
       TopicArn: !Ref SNSTopic
       Protocol: email
-      Endpoint: djouffotchigui@yahoo.com #REPLACE WITH AN EMAIL THAT YOU HAVE ACCESS TO
+      Endpoint: !Ref SNSEmailEndpoint
   
   StateMachine:
     Type: AWS::Serverless::StateMachine
@@ -376,10 +394,12 @@ Resources:
       Runtime: python3.13
       Architectures:
         - x86_64
-      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/ddbarmel"
       Environment:
         Variables:
           STATE_MACHINE_ARN: !GetAtt StateMachine.Arn
+      Policies:
+        - StepFunctionsExecutionPolicy:
+            StateMachineName: !GetAtt StateMachine.Name
       Events:
         CreateReport:
           Type: Api
