@@ -53,6 +53,10 @@ S3 handles pet images (via presigned URLs) and generated reports
 SAM (template.yaml) defines and deploys all backend infrastructure
 ```
 
+## Architecture
+
+![Architecture Diagram](Pets%20Shelter%20Application%20MVP%20Architecture.png)
+
 ## Project Structure
 
 - `pet-shelter-client/` - React frontend application
