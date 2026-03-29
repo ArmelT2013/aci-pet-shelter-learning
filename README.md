@@ -76,6 +76,8 @@ npm run dev
 ![Running the React frontend application](images/Running%20the%20React%20frontend%20application.png)
  Access the frontend application by following the link at the right of  ➜  Local:
 
+![Frontend](images/Frontend.png)
+
 ## Backend (pets-backend-working)
 
 AWS SAM application with Lambda functions for pet and adoption management.
