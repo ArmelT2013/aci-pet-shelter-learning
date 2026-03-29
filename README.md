@@ -74,7 +74,7 @@ npm run dev
 ```
 
 ![Running the React frontend application](images/Running%20the%20React%20frontend%20application.png)
-# Access the frontend application at http://localhost:8081/preview
+# Access the frontend application by following the link at the right of  ➜  Local:
 
 ## Backend (pets-backend-working)
 
