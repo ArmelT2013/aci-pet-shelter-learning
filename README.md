@@ -98,6 +98,8 @@ Also replace the VITE_REDIRECT_URI with the React frontend url. It should be the
 
 And this is how the About Us page looks like:
 
+![About Us](images/About_Us.png)
+
 ## Backend (pets-backend-working)
 
 AWS SAM application with Lambda functions for pet and adoption management.
