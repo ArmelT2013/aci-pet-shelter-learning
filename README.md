@@ -78,6 +78,22 @@ npm run dev
 
 ![Frontend](images/Frontend.png)
 
+Creating S3 bucket and uploading pictures from aci-pet-shelter-learning/src/assets to the bucket
+```bash
+cd pets-backend-working/scripts
+python create_images_bucket.py
+```
+This creates an S3 bucket in your AWS account where pictures from your computer are uploaded. Make a copy of the bucket url.
+
+Creating the .env file
+```bash
+cd pet-shelter-client
+cp .env.example .env
+``` 
+Open the .env file and paste the bucket url you copied in the previous step as the value for VITE_S3_BUCKET_URL. This allows the frontend to access the images stored in the S3 bucket.
+Also replace the VITE_REDIRECT_URI with the React frontend url. It should be the url next to -> Local obtained in a previous step
+ After refreshing the React frontend page, this is how the home page looks like:
+
 ## Backend (pets-backend-working)
 
 AWS SAM application with Lambda functions for pet and adoption management.
