@@ -94,6 +94,8 @@ Open the .env file and paste the bucket url you copied in the previous step as t
 Also replace the VITE_REDIRECT_URI with the React frontend url. It should be the url next to -> Local obtained in a previous step
  After refreshing the React frontend page, this is how the home page looks like:
 
+![Home Page](images/Home_Page.png)
+
 ## Backend (pets-backend-working)
 
 AWS SAM application with Lambda functions for pet and adoption management.
