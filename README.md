@@ -146,7 +146,7 @@ SAM configuration environment [default]: Accept the default value
 After deployment, SAM CLI will output the API Gateway endpoint URL. This is the URL that your React frontend will use to communicate with the backend.
 After deployment is successful, fill out the .env file with some of the values from the output: VITE_API_GATEWAY_URL and VITE_COGNITO_AUTH_URL. You do not have the VITE_COGNITO_AUTH_URL directly from the outputs, but you can construct it:
 
-VITE_COGNITO_AUTH_URL="https://<CognitoUserPoolDomain>.auth.<region>.amazoncognito.com/login?client_id=<CognitoUserPoolClientId>&response_type=token&scope=email+openid&redirect_uri=<CognitoCallbackURL>"
+VITE_COGNITO_AUTH_URL="https://<Replace with CognitoUserPoolDomain value>.auth.<Replace with the region>.amazoncognito.com/login?client_id=<Replace with the CognitoUserPoolClientId>&response_type=token&scope=email+openid&redirect_uri=<Replace with CognitoCallbackURL>"
 
 Replace CognitoUserPoolDomain, CognitoUserPoolClientId, region and CognitoCallbackURL. 
 
