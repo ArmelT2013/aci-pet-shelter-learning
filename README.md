@@ -164,6 +164,39 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 ![Adopt Homepage](images/Adopt_page.png)
 ![Employee signing homepage](images/Signing_page.png)
 
+### Test the employee signing feature.
+1. Create a user in Amazon Cognito
+- Open AWS Management Console, search for and choose Cognito
+- Navigate to the User pools page and choose pets-app.
+- In the left navigation pane, under User management, choose Users.
+- Choose Create user.
+- Choose don't send invitation and choose set a password.
+- Enter an email, such as firstname_lastname@example.com, and select Mark email address as verified. For Temporary password, choose a temporary password, such as the straightforward (and very weak) Password1!. Remember your password or record it somewhere so you can use it to log in later.
+- Leave the other options as defaults and choose Create user.
+
+![User Signing](images/user_signing_1.png)
+
+- Open the website preview, and choose Employee login.
+- Enter the email and password that you just created.
+- If you successfully log in, you will be prompted to change your password. Enter a new password of your choice. Save your password in a note or text file so you can refer to it, if needed.
+    When you enter your new password, you should be redirected back to the AnyCompany Pet Shelter website. There should now be a message at the top of the page that states, Signed in as employee. The Employee sign in button should be a Sign Out button, and the Applications link should be included in the top navigation bar, as shown in the image.
+
+### Test the employee signing feature.
+1. Create a user in Amazon Cognito
+- Open AWS Management Console, search for and choose Cognito
+- Navigate to the User pools page and choose pets-app.
+- In the left navigation pane, under User management, choose Users.
+- Choose Create user.
+- Choose don't send invitation and choose set a password.
+- Enter an email, such as firstname_lastname@example.com, and select Mark email address as verified. For Temporary password, choose a temporary password, such as the straightforward (and very weak) Password1!. Remember your password or record it somewhere so you can use it to log in later.
+- Leave the other options as defaults and choose Create user.
+A banner should appear indicating that User “firstname_lastname@example.com(opens in a new tab)” has been created successfully.
+- Open the website preview, and choose Employee login.
+- Enter the email and password that you just created.
+- If you successfully log in, you will be prompted to change your password. Enter a new password of your choice. Save your password in a note or text file so you can refer to it, if needed.
+    When you enter your new password, you should be redirected back to the AnyCompany Pet Shelter website. There should now be a message at the top of the page that states, Signed in as employee. The Employee sign in button should be a Sign Out button, and the Applications link should be included in the top navigation bar, as shown in the image.
+
+
 
 
 
