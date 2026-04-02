@@ -172,17 +172,28 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 - Choose Create user.
 - Choose don't send invitation and choose set a password.
 - Enter an email, such as firstname_lastname@example.com, and select Mark email address as verified. For Temporary password, choose a temporary password, such as the straightforward (and very weak) Password1!. Remember your password or record it somewhere so you can use it to log in later.
-- Leave the other options as defaults and choose Create user.
 
 ![User Signing](images/user_signing_1.png)
+
+- Leave the other options as defaults and choose Create user.
+
+![After user creation](images/After_user_creation.png)
 
 - Open the website preview, and choose Employee login.
 
 ![Home Page](images/Home_Page.png)
 
 - Enter the email and password that you just created.
+
+![First signing](images/First_signing.png)
+
 - If you successfully log in, you will be prompted to change your password. Enter a new password of your choice. Save your password in a note or text file so you can refer to it, if needed.
+
+![Changing password](images/changing_password.png)
+
     When you enter your new password, you should be redirected back to the AnyCompany Pet Shelter website. There should now be a message at the top of the page that states, Signed in as employee. The Employee sign in button should be a Sign Out button, and the Applications link should be included in the top navigation bar, as shown in the image.
+
+![After signing](images/After_signing.png)
 
 
 
