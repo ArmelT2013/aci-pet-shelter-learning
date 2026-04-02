@@ -206,7 +206,9 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 ![Generating report](images/After_choosing_generate_report.png)
 
 - After a few minutes you should see a link to the report in your mailbox.
-![Mail reception](images/Mail_received.png)
+- Choose the link to access the report.
+
+![Report](images/Intrest_report.png)
 
 
 
