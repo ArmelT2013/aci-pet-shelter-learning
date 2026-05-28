@@ -210,6 +210,8 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 
 ![Report](images/Intrest_report.png)
 
+## Deploying the app on AWS Amplify
+
 
 
 ## Features
@@ -224,3 +226,4 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 - Frontend: React, Vite
 - Backend: AWS Lambda, DynamoDB, S3
 - Infrastructure: AWS SAM
+
