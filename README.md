@@ -211,6 +211,39 @@ This is how the Pets homepage, Adopt homepage and employee signing homepage look
 ![Report](images/Intrest_report.png)
 
 ## Deploying the app on AWS Amplify
+1.Fix vite.config.js:
+ — change base from "/preview" to "/"
+2. Create a file called _redirects in pet-shelter-client/public/ with this content:
+/*    /index.html    200
+3. Build the app locally:
+```bash
+cd pet-shelter-client
+npm run build
+```
+4.- Go to the Amplify Console
+  - Choose 'Create new app'
+  - Choose 'Deploy without Git'
+  - App name: pet-shelter-app
+    Stage name: Leave the default value
+  - Method: Drag and drop
+    Drag and drop the pet-shelter-client/dist folder (or zip it and upload)
+  - The site is live at https://staging.d3mmcqtitozg5c.amplifyapp.com
+
+```
+3. Build the app locally:
+```bash
+cd pet-shelter-client
+npm run build
+```
+4.- Go to the Amplify Console
+  - Choose 'Create new app'
+  - Choose 'Deploy without Git'
+  - App name: pet-shelter-app
+    Stage name: Leave the default value
+  - Method: Drag and drop
+    Drag and drop the pet-shelter-client/dist folder (or zip it and upload)
+  - The site is live at https://staging.d3mmcqtitozg5c.amplifyapp.com
+
 
 
 
